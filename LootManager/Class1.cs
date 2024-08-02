@@ -1,4 +1,4 @@
-using Rocket.Core.Plugins;
+﻿using Rocket.Core.Plugins;
 using SDG.Unturned;
 using System;
 using System.Collections.Generic;
