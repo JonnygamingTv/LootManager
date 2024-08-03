@@ -65,6 +65,12 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wrapper\Animspawn.cs" />
+    <Compile Include="Wrapper\Animtier.cs" />
+    <Compile Include="Wrapper\Zombcloth.cs" />
+    <Compile Include="Wrapper\Zombslot.cs" />
+    <Compile Include="Wrapper\Zombtable.cs" />
+    <Compile Include="Wrapper\Animtable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

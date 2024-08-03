@@ -12,14 +12,14 @@ namespace LootManager
     {
         public bool ModifyAnimals;
         public bool ModifyZombs;
-        public List<AnimalTable> animalTable;
-        public List<ZombieTable> zombieTable;
+        public List<Wrapper.Animtable> animalTable;
+        public List<Wrapper.Zombtable> zombieTable;
         public void LoadDefaults()
         {
             ModifyAnimals = false;
             ModifyZombs = true;
-            animalTable = new List<AnimalTable>();
-            zombieTable = new List<ZombieTable>();
+            animalTable = new List<Wrapper.Animtable>();
+            zombieTable = new List<Wrapper.Zombtable>();
         }
     }
 }
