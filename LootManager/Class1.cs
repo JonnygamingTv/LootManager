@@ -10,8 +10,11 @@ namespace LootManager
 {
     public class Class1 : RocketPlugin<Config>
     {
+        Class1 Instance;
         protected override void Load()
         {
+            if (Instance != null) OLL(0);
+            Instance = this;
             Level.onLevelLoaded += OLL;
             Rocket.Core.Logging.Logger.Log("Loaded");
         }
@@ -58,6 +61,41 @@ namespace LootManager
                 }
                 Rocket.Core.Logging.Logger.Log("Modified Zombie tables");
             }
+            if(Configuration.Instance.itemTable.Count == 0)
+            {
+                foreach(ItemTable itemtab in LevelItems.tables)
+                {
+                    Configuration.Instance.itemTable.Add(new Wrapper.TableItem(itemtab.tiers, itemtab.color, itemtab.name, itemtab.tableID));
+                }
+                change = true;
+            }else if (Configuration.Instance.ModifyItems)
+            {
+                LevelItems.tables.Clear();
+                foreach(Wrapper.TableItem item in Configuration.Instance.itemTable)
+                {
+                    LevelItems.tables.Add(new ItemTable(item.GetTiers(),item.color,item.name,item.tableID));
+                }
+                Rocket.Core.Logging.Logger.Log("Modified Item tables");
+            }
+            if(Configuration.Instance.SpawnpointA.Count == 0)
+            {
+                foreach (List<ItemSpawnpoint> Spawnpoint in LevelItems.spawns) {
+                    //List<Wrapper.Spawnpointitem> Spawnpoints = new List<Wrapper.Spawnpointitem>();
+                    foreach (ItemSpawnpoint realSpawn in Spawnpoint) Configuration.Instance.SpawnpointA.Add(new Wrapper.Spawnpointitem(realSpawn.type, realSpawn.point));
+                }
+                change = true;
+            }
+            else if (Configuration.Instance.ModifySpawns)
+            {
+                List<ItemSpawnpoint> Spawnpoints = new List<ItemSpawnpoint>();
+                foreach (Wrapper.Spawnpointitem Spawnpoint in Configuration.Instance.SpawnpointA)
+                {
+                    Spawnpoints.Add(new ItemSpawnpoint(Spawnpoint.type, Spawnpoint.point));
+                }
+                LevelItems.spawns[LevelItems.spawns.GetLength(0), LevelItems.spawns.GetLength(1)] = Spawnpoints;
+                Rocket.Core.Logging.Logger.Log("Modified Itemspawn tables");
+            }
+            
             if(change)Configuration.Save();
         }
     }
