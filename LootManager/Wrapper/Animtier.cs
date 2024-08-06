@@ -16,6 +16,7 @@ namespace LootManager.Wrapper
         public Animtier() { }
         public Animtier(List<Wrapper.Animspawn> newTable, string newName, float newChance)
         {
+            _table = newTable;
             name = newName;
             chance = newChance;
             foreach (Animspawn _spawn in newTable)
@@ -25,6 +26,7 @@ namespace LootManager.Wrapper
         }
         public Animtier(List<AnimalSpawn> newTable, string newName, float newChance)
         {
+            table = newTable;
             name = newName;
             chance = newChance;
             foreach (AnimalSpawn _spawn in newTable)
